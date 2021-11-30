@@ -79,10 +79,10 @@ jobs:
         cd /opt
         #sudo cp $GITHUB_WORKSPACE/scripts/patches/*.patch ./
         sudo cp $GITHUB_WORKSPACE/scripts/respawn_mks.sh ./
-        sudo git clone https://github.com/unifreq/openwrt_packit openwrt
+        sudo git clone https://github.com/unifreq/openwrt_packit
         sudo chmod +x ./respawn_mks.sh
         sudo ./respawn_mks.sh
-        cd /opt/openwrt
+        cd /opt/openwrt_packit
         sudo wget $(curl -s https://api.github.com/repos/HoldOnBro/Actions-OpenWrt/releases/34554768 | grep browser_download_url | cut -d '"' -f 4)
         chmod +x $GITHUB_WORKSPACE/$Update_Ver_SH
         sudo $GITHUB_WORKSPACE/$Update_Ver_SH
@@ -125,7 +125,7 @@ jobs:
       id: organize
       if: steps.build.outputs.status == 'success' && !cancelled()
       run: |
-        cd /opt/openwrt/tmp/
+        cd /opt/openwrt_packit/output
         pigz -6 -p $(nproc) *.img
 
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
