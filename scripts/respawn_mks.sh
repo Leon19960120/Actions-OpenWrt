@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd openwrt
+cd /opt/openwrt_packit
 cp make.env makeplus.env
 cp make.env makeplusplus.env
 
